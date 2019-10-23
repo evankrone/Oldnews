@@ -60,15 +60,21 @@ h1{
 
 
 #hr{
-    border-color: black;
-    width: 95%;
+    border-color:#23231b;
+    width: 50%;
+    justify-content: center;
+    background-image: radial-gradient(black, transparent);
+    border: 0;
+    height: 2px;
+
+
 }
 
 #article-title{
     font-family: bodoni; 
     font-weight: bolder;
     text-transform: uppercase;
-    color:rgb(48, 44, 44);
+    color:#23231b;
     font-size: 30px;
     text-align: left;
     margin: 1px;
@@ -125,13 +131,31 @@ h1{
 #description{
     font-family: bodoni;
     font-style: italic;
-    text-align: justify;
+    text-align: left;
     margin: 1px;
-    font-size: 25px;
-    font-weight: 600;
-    margin-left: 5%
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 5%;
+    color: #23231b;
 }
 
+a:link{
+    color: black;
+    text-decoration: none;
+    font-style: italic;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+a:visited{
+    color:#23231b;
+}
+
+a:active{
+    color: #23231b;
+}
 
 #content{
     text-align: justify;
@@ -154,4 +178,11 @@ h1{
    
   }
     
-    
+#category-selection{
+    text-align: center;
+    font-size: 60px;
+    font-weight: bold;
+    font-family: bodoni;
+    text-transform: uppercase;
+    margin-bottom: -8px;
+}

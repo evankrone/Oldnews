@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function(){
     let newsfeed = document.querySelector('#articles')
     let leftContainer = document.querySelector('#column1')
     let rightContainer = document.querySelector('#column2')
+    let categorySelction = document.querySelector('#category-selection')
     
     let url = 'https://newsapi.org/v2/top-headlines?' +
     'country=us&' +
@@ -30,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function(){
     let navSelection = event.target.innerText
     if(navSelection === 'Business'){
     let fetchCategory = 'business' 
+    
     let url = 'https://newsapi.org/v2/top-headlines?' +
     'country=us&' +
     `category=${fetchCategory}&` +
@@ -39,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function(){
         .then(response => response.json())
         .then(news => { createNewsCard(news.articles)
   })
+  categorySelction.innerText = fetchCategory
 } else if(navSelection === 'Entertainment'){
     let fetchCategory = 'entertainment' 
     let url = 'https://newsapi.org/v2/top-headlines?' +
@@ -50,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function(){
         .then(response => response.json())
         .then(news => { createNewsCard(news.articles)
   })
+  categorySelction.innerText = fetchCategory
 } else if(navSelection === 'General'){
     let fetchCategory = 'general' 
     let url = 'https://newsapi.org/v2/top-headlines?' +
@@ -61,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function(){
         .then(response => response.json())
         .then(news => { createNewsCard(news.articles)
   })
+  categorySelction.innerText = fetchCategory
 } else if(navSelection === 'Health'){
     let fetchCategory = 'health' 
     let url = 'https://newsapi.org/v2/top-headlines?' +
@@ -72,6 +77,7 @@ document.addEventListener('DOMContentLoaded', function(){
         .then(response => response.json())
         .then(news => { createNewsCard(news.articles)
   })
+  categorySelction.innerText = fetchCategory
 } else if(navSelection === 'Sports'){
     let fetchCategory = 'sports' 
     let url = 'https://newsapi.org/v2/top-headlines?' +
@@ -83,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function(){
         .then(response => response.json())
         .then(news => { createNewsCard(news.articles)
   })
+  categorySelction.innerText = fetchCategory
 } else if(navSelection === 'Tech'){
     let fetchCategory = 'technology' 
     let url = 'https://newsapi.org/v2/top-headlines?' +
@@ -94,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function(){
         .then(response => response.json())
         .then(news => { createNewsCard(news.articles)
   }) 
+  categorySelction.innerText = fetchCategory
 } else if(navSelection === 'Science'){
     let fetchCategory = 'science' 
     let url = 'https://newsapi.org/v2/top-headlines?' +
@@ -105,6 +113,7 @@ document.addEventListener('DOMContentLoaded', function(){
         .then(response => response.json())
         .then(news => { createNewsCard(news.articles)
   })
+  categorySelction.innerText = fetchCategory
 } else {
         let url = 'https://newsapi.org/v2/top-headlines?' +
         'country=us&' +
@@ -117,16 +126,39 @@ document.addEventListener('DOMContentLoaded', function(){
 }
 })
 
-    function clearFetch(){
-        if(navBar.children){
-            navBar.children.remove();
-        }
-    }
 
-   function createNewsCard(articles){
+
+    function createNewsCard(articles){
     let i = 0;
     articles.forEach(article => {
-    const newNewsCard = document.createElement('div')
+        let title = article.title
+        let articleDesc = article.description
+        fetch('https://api.funtranslations.com/translate/shakespeare.json', {
+            method: 'POST',
+            headers:{ 
+                'X-Funtranslations-Api-Secret': '6qJYg8rnNgOZ2gmsoTgkeweF',
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            },body: JSON.stringify({
+                text: title,
+            
+            })
+        })
+        .then(resp => resp.json())
+        .then(resp => {
+
+            const newNewsCard = document.createElement('div')
+            let translatedTitle = document.createElement('h2')
+             translatedTitle.setAttribute('id', 'article-title')
+             translatedTitle.innerText = resp.contents.translated
+            newNewsCard.prepend(translatedTitle)
+           
+           
+            // let translatedDesc = document.createElement('h3')
+            // translatedDesc.innerText = resp.contents.translated
+            // translatedDesc.setAttribute('id', 'description')
+
+     
       let imgDiv = document.createElement('div'); 
       imgDiv.innerHTML =  `<div class='retro'>
       <img id="img-url" src= ${article.urlToImage} >
@@ -136,12 +168,10 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
         newNewsCard.innerHTML += `
-            <h2 id="article-title">${article.title}</h2>
-            <h3 id='description'>${article.description}</h3>
-            <h4 id="author">${article.author}</h4>
-            
+            <h3 id="description">${article.description}</h3>
+            <h4 id="author">${article.author || 'Unbeknownst Scribe'} </h4>
             <p id='content'>${article.content} </p>
-            
+            <a href=${article.url}>Link To Full Article</a>
         `
         if(i%3 === 0){
             newNewsCard.prepend(imgDiv)
@@ -157,6 +187,7 @@ document.addEventListener('DOMContentLoaded', function(){
             i++;
         }
     })
+})
 };
 
 let date = document.querySelector('#date');
