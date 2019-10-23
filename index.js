@@ -3,19 +3,126 @@ document.addEventListener('DOMContentLoaded', function(){
     let leftContainer = document.querySelector('#column1')
     let rightContainer = document.querySelector('#column2')
     
-    
-    var url = 'https://newsapi.org/v2/top-headlines?' +
+    let url = 'https://newsapi.org/v2/top-headlines?' +
     'country=us&' +
-    'pageSize=5&' +
+    'pageSize=3&' +
     'apiKey=cca8e82c481f4e7496c04e7e57c37f73';
-        
-var req = new Request(url);
-fetch(req)
-.then(response => response.json())
-.then(news => { createNewsCard(news.articles)
-
+        fetch(url)
+        .then(response => response.json())
+        .then(news => { createNewsCard(news.articles)
+    })
+  
+    
+  
+    
+    const navBar = document.querySelector("#categories")
+    let categoriesArr = ["Business", "Entertainment", "General", "Health", "Sports", "Tech", "Science"];
+    categoriesArr.forEach(category => {
+        const navSpan = document.createElement("span")
+        navSpan.innerText = category
+        navBar.append(navSpan)
+    })
+    
+    navBar.addEventListener("click", function(event){
+    console.log(event.target.innerText)
+    leftContainer.innerHTML = ""
+    rightContainer.innerHTML = ""
+    let navSelection = event.target.innerText
+    if(navSelection === 'Business'){
+    let fetchCategory = 'business' 
+    let url = 'https://newsapi.org/v2/top-headlines?' +
+    'country=us&' +
+    `category=${fetchCategory}&` +
+    'pageSize=3&' +
+    'apiKey=cca8e82c481f4e7496c04e7e57c37f73';
+        fetch(url)
+        .then(response => response.json())
+        .then(news => { createNewsCard(news.articles)
+  })
+} else if(navSelection === 'Entertainment'){
+    let fetchCategory = 'entertainment' 
+    let url = 'https://newsapi.org/v2/top-headlines?' +
+    'country=us&' +
+    `category=${fetchCategory}&` +
+    'pageSize=3&' +
+    'apiKey=cca8e82c481f4e7496c04e7e57c37f73';
+        fetch(url)
+        .then(response => response.json())
+        .then(news => { createNewsCard(news.articles)
+  })
+} else if(navSelection === 'General'){
+    let fetchCategory = 'general' 
+    let url = 'https://newsapi.org/v2/top-headlines?' +
+    'country=us&' +
+    `category=${fetchCategory}&` +
+    'pageSize=3&' +
+    'apiKey=cca8e82c481f4e7496c04e7e57c37f73';
+        fetch(url)
+        .then(response => response.json())
+        .then(news => { createNewsCard(news.articles)
+  })
+} else if(navSelection === 'Health'){
+    let fetchCategory = 'health' 
+    let url = 'https://newsapi.org/v2/top-headlines?' +
+    'country=us&' +
+    `category=${fetchCategory}&` +
+    'pageSize=3&' +
+    'apiKey=cca8e82c481f4e7496c04e7e57c37f73';
+        fetch(url)
+        .then(response => response.json())
+        .then(news => { createNewsCard(news.articles)
+  })
+} else if(navSelection === 'Sports'){
+    let fetchCategory = 'sports' 
+    let url = 'https://newsapi.org/v2/top-headlines?' +
+    'country=us&' +
+    `category=${fetchCategory}&` +
+    'pageSize=3&' +
+    'apiKey=cca8e82c481f4e7496c04e7e57c37f73';
+        fetch(url)
+        .then(response => response.json())
+        .then(news => { createNewsCard(news.articles)
+  })
+} else if(navSelection === 'Tech'){
+    let fetchCategory = 'technology' 
+    let url = 'https://newsapi.org/v2/top-headlines?' +
+    'country=us&' +
+    `category=${fetchCategory}&` +
+    'pageSize=3&' +
+    'apiKey=cca8e82c481f4e7496c04e7e57c37f73';
+        fetch(url)
+        .then(response => response.json())
+        .then(news => { createNewsCard(news.articles)
+  }) 
+} else if(navSelection === 'Science'){
+    let fetchCategory = 'science' 
+    let url = 'https://newsapi.org/v2/top-headlines?' +
+    'country=us&' +
+    `category=${fetchCategory}&` +
+    'pageSize=3&' +
+    'apiKey=cca8e82c481f4e7496c04e7e57c37f73';
+        fetch(url)
+        .then(response => response.json())
+        .then(news => { createNewsCard(news.articles)
+  })
+} else {
+        let url = 'https://newsapi.org/v2/top-headlines?' +
+        'country=us&' +
+        'pageSize=3&' +
+        'apiKey=cca8e82c481f4e7496c04e7e57c37f73';
+            fetch(url)
+            .then(response => response.json())
+            .then(news => { createNewsCard(news.articles)
+      })
+}
 })
- 
+
+    function clearFetch(){
+        if(navBar.children){
+            navBar.children.remove();
+        }
+    }
+
    function createNewsCard(articles){
     let i = 0;
     articles.forEach(article => {
@@ -36,11 +143,15 @@ fetch(req)
             <p id='content'>${article.content} </p>
             
         `
-        if(i%2 === 0){
+        if(i%3 === 0){
             newNewsCard.prepend(imgDiv)
             leftContainer.append(newNewsCard)
             i++;
-        } else{
+        } else if (i%3===1){ 
+            rightContainer.append(newNewsCard)
+            newNewsCard.className= ('right')
+            i++;
+    } else{
             rightContainer.append(newNewsCard)
             newNewsCard.className= ('right')
             i++;
@@ -49,6 +160,8 @@ fetch(req)
 };
 
 let date = document.querySelector('#date');
+let dateTag = document.createElement('p');
+dateTag.classList.add('dateTag')
 var curday = function(sp){
     today = new Date();
     var dd = today.getDate();
@@ -61,11 +174,10 @@ var curday = function(sp){
     console.log(curday('/'));
     console.log(curday('-'));
 
-    date.innerText = curday('/');
- 
+    dateTag.innerText = curday('/');
+    date.append(dateTag)
     
-    
-    
+
     
 
 
