@@ -1,7 +1,14 @@
+html{
+    border-top: 15px ridge #cfb683;
+    
+}
 body{
-    background-image: url('http://tequilatrianon.com/en/img/sect_Test_PaperBG.jpg');
+    /* background-image: url('http://tequilatrianon.com/en/img/sect_Test_PaperBG.jpg'); */
+    background-color:x papayawhip;
     background-size: 100%;
     padding: 10px;
+    width: 90%;
+    margin: auto
 }
 
 h1{
@@ -9,20 +16,55 @@ h1{
     font-family: chomsky;
     font-size: 80px ; 
     color: #23231b;
-    margin: -10px;
+    margin: -10px 200px -10px;
+    float: center;
+
 }
 
-#date{
+#categories{
     text-align: center;
     font-family: Superclarendon;
     font-style: italic;
     letter-spacing:  -1px;
     border-top: 2px solid black;
     border-bottom: 2px solid black;
-    width: 90%;
+    width: 93.2%;
     margin: auto;
 }
     
+#date{
+    font-family: Superclarendon;
+    font-style: italic;
+    letter-spacing:  -1px;
+    float: left;
+    height: 90%;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    margin-top: 2.2%;
+    margin-left: 5%
+
+}
+
+#location{
+    font-family: Superclarendon;
+    font-style: italic;
+    letter-spacing:  -1px;
+    float: right;
+    font-size: 12px;
+    height: 80%;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    margin-top: 2.2%;
+    margin-right: 5%;
+    padding: 10px;
+
+}
 
 
     /* filter: sepia(100%) ; */
@@ -30,10 +72,12 @@ h1{
     -webkit-box-shadow:  inset 0px 0px 100px rgba(0,0,20,1);
     background: -webkit-linear-gradient(top, rgba(255,145,0,0.2) 0%,rgba(255,230,48,0.2) 60%), -webkit-linear-gradient(20deg, rgba(102, 12, 12, 0.5) 0%,rgba(104, 9, 9, 0) 35%);
     display: table;
+    margin-left: 5%;
 }
 .retro img { 
     -webkit-filter: grayscale(100%) brightness(60%) contrast(130%);
     position: relative; z-index: -1; 
+    
 }
     
 
@@ -41,86 +85,140 @@ h1{
 
 
 #hr{
-    border-color: black;
-    width: 95%;
+    border-color:#23231b;
+    width: 50%;
+    justify-content: center;
+    background-image: radial-gradient(black, transparent);
+    border: 0;
+    height: 2px;
+
+
 }
 
 #article-title{
     font-family: bodoni; 
     font-weight: bolder;
     text-transform: uppercase;
-    color:rgb(48, 44, 44);
-    font-size: 30px;
+    color:#23231b;
+    font-size: 35px;
     text-align: left;
     margin: 1px;
+    margin-left: 5%;
 
 }
 #row1{
+    width: 97%;
+    justify-content: center;
     display:flex;
-    flex-direction:row;
-    justify-content: space-around;
+    flex-direction: row;
+    
     }
     
 #column1{
     display:flex;
     flex-direction:column;
-
     text-align: center;
+
     }
     
 #column2{
     height: 50%;
-
-    display:flex;
+    float: right;
     flex-direction:column;
-    
     text-align: center;
+    
     }
 
 .news-card{
-    border-bottom: 2px solid  black;
- 
+    
     margin: 15px; 
-    padding: 15px;
     width: 700px;
-    height: 900px;
+    height: 100%;
 }
 .right{
     height: 50%;
     border-bottom: 2px solid black;
     margin:15px;
-    padding: 15px;
+    margin-left: 5px;
 }
 
+.lastright{
+    height: 50%;
+    margin:15px;
+}
 #img-url{
     width: 625px;
-    height: 525px;
+    height: 430px;
     display:block;
-    margin-left: auto;
-    margin-right:auto;
     box-shadow: 25px 25px 50px 0 white inset,-25px -25px 50px 0 white inset;
 }
 #author{
     text-align: left;
-    margin: 1px;
+    margin-left: 5%;
 }
 
 #description{
     font-family: bodoni;
     font-style: italic;
-    text-align: justify;
+    text-align: left;
     margin: 1px;
-    font-size: 25px;
-    font-weight: 600
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 5%;
+    color: #23231b;
 }
 
+a:link{
+    color: black;
+    text-decoration: none;
+    font-style: italic;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+a:visited{
+    color:#23231b;
+}
+
+a:active{
+    color: #23231b;
+}
 
 #content{
     text-align: justify;
-    margin: 1px;
+    margin-left: 5%;
 }
     
+#categories {
+    height: 25px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  #categories span{
+    height: 20px;
+    width: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+  }
     
-    
-    
-    
+#category-selection{
+    text-align: center;
+    font-size: 60px;
+    font-weight: bold;
+    font-family: bodoni;
+    text-transform: uppercase;
+    margin-bottom: -8px;
+}
+
+footer{
+    text-align: center;
+    border-top: 2px solid  black;
+    width: 93.2%;
+    margin: auto;
+}
