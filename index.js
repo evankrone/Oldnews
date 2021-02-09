@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function(){
     
     let url = 'https://newsapi.org/v2/top-headlines?' +
     'country=us&' +
-    'pageSize=3&' +
+    'pageSize=4&' +
     'apiKey=cca8e82c481f4e7496c04e7e57c37f73';
         fetch(url)
         .then(response => response.json())
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function(){
     let url = 'https://newsapi.org/v2/top-headlines?' +
     'country=us&' +
     `category=${fetchCategory}&` +
-    'pageSize=3&' +
+    'pageSize=4&' +
     'apiKey=cca8e82c481f4e7496c04e7e57c37f73';
         fetch(url)
         .then(response => response.json())
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function(){
     let url = 'https://newsapi.org/v2/top-headlines?' +
     'country=us&' +
     `category=${fetchCategory}&` +
-    'pageSize=3&' +
+    'pageSize=4&' +
     'apiKey=cca8e82c481f4e7496c04e7e57c37f73';
         fetch(url)
         .then(response => response.json())
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function(){
     let url = 'https://newsapi.org/v2/top-headlines?' +
     'country=us&' +
     `category=${fetchCategory}&` +
-    'pageSize=3&' +
+    'pageSize=4&' +
     'apiKey=cca8e82c481f4e7496c04e7e57c37f73';
         fetch(url)
         .then(response => response.json())
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function(){
     let url = 'https://newsapi.org/v2/top-headlines?' +
     'country=us&' +
     `category=${fetchCategory}&` +
-    'pageSize=3&' +
+    'pageSize=4&' +
     'apiKey=cca8e82c481f4e7496c04e7e57c37f73';
         fetch(url)
         .then(response => response.json())
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function(){
     let url = 'https://newsapi.org/v2/top-headlines?' +
     'country=us&' +
     `category=${fetchCategory}&` +
-    'pageSize=3&' +
+    'pageSize=4&' +
     'apiKey=cca8e82c481f4e7496c04e7e57c37f73';
         fetch(url)
         .then(response => response.json())
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function(){
     let url = 'https://newsapi.org/v2/top-headlines?' +
     'country=us&' +
     `category=${fetchCategory}&` +
-    'pageSize=3&' +
+    'pageSize=4&' +
     'apiKey=cca8e82c481f4e7496c04e7e57c37f73';
         fetch(url)
         .then(response => response.json())
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function(){
     let url = 'https://newsapi.org/v2/top-headlines?' +
     'country=us&' +
     `category=${fetchCategory}&` +
-    'pageSize=3&' +
+    'pageSize=4&' +
     'apiKey=cca8e82c481f4e7496c04e7e57c37f73';
         fetch(url)
         .then(response => response.json())
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function(){
 } else {
         let url = 'https://newsapi.org/v2/top-headlines?' +
         'country=us&' +
-        'pageSize=3&' +
+        'pageSize=4&' +
         'apiKey=cca8e82c481f4e7496c04e7e57c37f73';
             fetch(url)
             .then(response => response.json())
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function(){
     let i = 0;
     articles.forEach(article => {
         let title = article.title
-        let articleDesc = article.description
+        
         fetch('https://api.funtranslations.com/translate/shakespeare.json', {
             method: 'POST',
             headers:{ 
@@ -151,9 +151,9 @@ document.addEventListener('DOMContentLoaded', function(){
             let translatedTitle = document.createElement('h2')
              translatedTitle.setAttribute('id', 'article-title')
              translatedTitle.innerText = resp.contents.translated
-            newNewsCard.prepend(translatedTitle)
+            
            
-           
+            // let articleDesc = article.description
             // let translatedDesc = document.createElement('h3')
             // translatedDesc.innerText = resp.contents.translated
             // translatedDesc.setAttribute('id', 'description')
@@ -170,20 +170,28 @@ document.addEventListener('DOMContentLoaded', function(){
         newNewsCard.innerHTML += `
             <h3 id="description">${article.description}</h3>
             <h4 id="author">${article.author || 'Unbeknownst Scribe'} </h4>
-            <p id='content'>${article.content} </p>
+            <p id='content'>${article.content || 'Whoopsies! Did not find article'} </p>
             <a href=${article.url}>Link To Full Article</a>
         `
-        if(i%3 === 0){
+        if(i%4 === 0){
             newNewsCard.prepend(imgDiv)
+            newNewsCard.prepend(translatedTitle)
             leftContainer.append(newNewsCard)
             i++;
-        } else if (i%3===1){ 
+        } else if (i%4===1){ 
+            newNewsCard.prepend(translatedTitle)
             rightContainer.append(newNewsCard)
             newNewsCard.className= ('right')
             i++;
-    } else{
+        }else if (i%4===2){ 
+            newNewsCard.prepend(translatedTitle)
             rightContainer.append(newNewsCard)
             newNewsCard.className= ('right')
+            i++;
+        } else {
+            newNewsCard.prepend(translatedTitle)
+            rightContainer.append(newNewsCard)
+            newNewsCard.className= ('lastright')
             i++;
         }
     })
